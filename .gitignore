@@ -5,3 +5,12 @@
 .idea/
 .vscode/
 
+# Exercise 1
+basic_exercises/exercise1/*
+!basic_exercises/exercise1/cam_74.pgm
+!basic_exercises/exercise1/example_opencv_1.cpp
+!basic_exercises/exercise1/Exercises_01a_1.pdf
+
+
+# Add Makefiles
+!Makefile
