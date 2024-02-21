@@ -11,7 +11,7 @@ SOURCE = example_opencv_1.cpp
 IMAGE = cam_74.pgm
 
 $(TARGET): $(SOURCE)
-	$(CXX) $(CXXFLAGS) -o $@ $< -I$(OPENCV_INCDIR) -L$(OPENCV_LIBDIR) $(OPENCV_LIBS) $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $< -I$(OPENCV_INCDIR) -L$(OPENCV_LIBDIR) $(OPENCV_LIBS)
 
 run: $(TARGET) $(IMAGE)
 	./$(TARGET) $(IMAGE)
