@@ -11,6 +11,22 @@ basic_exercises/exercise1/*
 !basic_exercises/exercise1/example_opencv_1.cpp
 !basic_exercises/exercise1/Exercises_01a_1.pdf
 
+# Exercise 2
+basic_exercises/exercise2/a/*
+!basic_exercises/exercise2/a/cam_74.pgm
+!basic_exercises/exercise2/a/cam_74_threshold100.pgm
+!basic_exercises/exercise2/a/Exercises_02ab_1.pdf
+!basic_exercises/exercise2/a/exercise_02a_thresh.cpp
+
+basic_exercises/exercise2/c/*
+!basic_exercises/exercise2/c/Exercises_02c_1.pdf
+!basic_exercises/exercise2/c/image1.pgm
+!basic_exercises/exercise2/c/image2.pgm
+!basic_exercises/exercise2/c/image1_inf_image2.pgm
+!basic_exercises/exercise2/c/image1_sup_image2.pgm
+
+basic_exercises/exercise2/d/*
+!basic_exercises/exercise2/d/Exercises_02d_1.pdf
 
 # Add Makefiles
 !Makefile
