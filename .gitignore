@@ -31,6 +31,9 @@ basic_exercises/exercise2/c/*
 !basic_exercises/exercise2/c/image2.pgm
 !basic_exercises/exercise2/c/image1_inf_image2.pgm
 !basic_exercises/exercise2/c/image1_sup_image2.pgm
+!basic_exercises/exercise2/c/exercise_02c_sup.cpp
+!basic_exercises/exercise2/c/exercise_02c_inf.cpp
+!basic_exercises/exercise2/c/Makefile
 
 basic_exercises/exercise2/d/*
 !basic_exercises/exercise2/d/Exercises_02d_1.pdf
