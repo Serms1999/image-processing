@@ -2,6 +2,8 @@
 // Created by Sergio Marin Sanchez on 23/2/24.
 //
 
+#include "exercise_02b_compare.hpp"
+
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 
@@ -11,9 +13,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-
-#define EQUAL_FILES '1'
-#define DIFFERENT_FILES '0'
 
 int writeOutputFile(bool equal)
 {
