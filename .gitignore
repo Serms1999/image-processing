@@ -38,5 +38,10 @@ basic_exercises/exercise2/c/*
 basic_exercises/exercise2/d/*
 !basic_exercises/exercise2/d/Exercises_02d_1.pdf
 
+# Exercise 3
+basic_exercises/exercise3/a/*
+!basic_exercises/exercise3/a/exercise_03a_erosion.cpp
+!basic_exercises/exercise3/a/exercise_03a_erosion.hpp
+
 # Add Makefiles
 !Makefile
