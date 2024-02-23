@@ -8,7 +8,6 @@
 #include "opencv2/highgui.hpp"
 
 #include <iostream>
-#include <algorithm>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>

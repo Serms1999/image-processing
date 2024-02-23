@@ -22,6 +22,7 @@ basic_exercises/exercise2/a/*
 basic_exercises/exercise2/b/*
 !basic_exercises/exercise2/b/Exercises_02ab_1.pdf
 !basic_exercises/exercise2/b/exercise_02b_compare.cpp
+!basic_exercises/exercise2/b/exercise_02b_compare.hpp
 !basic_exercises/exercise2/b/Makefile
 
 basic_exercises/exercise2/c/*
