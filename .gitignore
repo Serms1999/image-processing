@@ -42,6 +42,14 @@ basic_exercises/exercise2/d/*
 basic_exercises/exercise3/a/*
 !basic_exercises/exercise3/a/exercise_03a_erosion.cpp
 !basic_exercises/exercise3/a/exercise_03a_erosion.hpp
+!basic_exercises/exercise3/a/Exercises_03ab_1.pdf
+!basic_exercises/exercise3/a/immed_gray_inv*
+
+basic_exercises/exercise3/b/*
+!basic_exercises/exercise3/b/exercise_03b_dilation.cpp
+!basic_exercises/exercise3/b/exercise_03b_dilation.hpp
+!basic_exercises/exercise3/b/Exercises_03ab_1.pdf
+!basic_exercises/exercise3/b/immed_gray_inv*
 
 # Add Makefiles
 !Makefile
