@@ -8,16 +8,17 @@ OPENCV_INCDIR = /usr/local/include/opencv4
 OPENCV_LIBDIR = /usr/local/lib
 OPENCV_LIBS = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
 
-TARGET_SUP = exercise_02c_sup
-TARGET_INF = exercise_02c_inf
+PREFIX = exercise_02c
+TARGET_SUP = $(PREFIX)_sup
+TARGET_INF = $(PREFIX)_inf
 SOURCE_SUP = $(TARGET_SUP).cpp
 SOURCE_INF = $(TARGET_INF).cpp
 COMPILATION_FILES_FOLDER_SUP = $(TARGET_SUP).dSYM
 COMPILATION_FILES_FOLDER_INF = $(TARGET_INF).dSYM
 INPUT_IMAGE_1 ?= $(PREFIX)_input_01.pgm
 INPUT_IMAGE_2 ?= $(PREFIX)_input_02.pgm
-OUTPUT_SUP = exercise_02c_sup_output_01.pgm
-OUTPUT_INF = exercise_02c_inf_output_01.pgm
+OUTPUT_SUP = $(PREFIX)_sup_output_01.pgm
+OUTPUT_INF = $(PREFIX)_inf_output_01.pgm
 
 build: $(TARGET_SUP) $(TARGET_INF)
 
