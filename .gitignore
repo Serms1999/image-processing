@@ -51,5 +51,12 @@ basic_exercises/exercise3/b/*
 !basic_exercises/exercise3/b/Exercises_03ab_1.pdf
 !basic_exercises/exercise3/b/immed_gray_inv*
 
+# Exercise 4
+basic_exercises/exercise4/a/*
+!basic_exercises/exercise4/a/*.cpp
+!basic_exercises/exercise4/a/*.hpp
+!basic_exercises/exercise4/a/Exercises_04ab_1.pdf
+!basic_exercises/exercise4/a/immed_gray_inv*
+
 # Add Makefiles
 !Makefile
