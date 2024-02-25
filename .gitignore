@@ -88,5 +88,14 @@ basic_exercises/exercise6/a/*
 !basic_exercises/exercise6/a/immed_gray_inv_20051123_ope2clo2.pgm
 !basic_exercises/exercise6/a/immed_gray_inv_20051123_ope4clo4.pgm
 
+basic_exercises/exercise6/b/*
+!basic_exercises/exercise6/b/*.cpp
+!basic_exercises/exercise6/b/*.hpp
+!basic_exercises/exercise6/b/Exercises_06ab_1.pdf
+!basic_exercises/exercise6/b/immed_gray_inv_20051123_clo2ope2.pgm
+!basic_exercises/exercise6/b/immed_gray_inv_20051123_clo4ope4.pgm
+!basic_exercises/exercise6/b/immed_gray_inv_20051123_ope2clo2.pgm
+!basic_exercises/exercise6/b/immed_gray_inv_20051123_ope4clo4.pgm
+
 # Add Makefiles
 !Makefile
