@@ -98,5 +98,12 @@ basic_exercises/exercise6/b/*
 !basic_exercises/exercise6/b/immed_gray_inv_20051123_ope2clo2.pgm
 !basic_exercises/exercise6/b/immed_gray_inv_20051123_ope4clo4.pgm
 
+# Exercise 7
+basic_exercises/exercise7/a/*
+!basic_exercises/exercise7/a/*.cpp
+!basic_exercises/exercise7/a/*.hpp
+!basic_exercises/exercise7/a/Exercises_07ab_1.pdf
+!basic_exercises/exercise7/a/cam_74.pgm
+
 # Add Makefiles
 !Makefile
