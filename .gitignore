@@ -4,6 +4,7 @@
 # Remove IDE files
 .idea/
 .vscode/
+.texpadtmp/
 
 # Exercise 1
 basic_exercises/exercise1/*
