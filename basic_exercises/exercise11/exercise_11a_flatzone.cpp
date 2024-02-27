@@ -179,7 +179,7 @@ neighbourhood getNeighbours(pixel p, u_int height, u_int width, u_int connectivi
     else
     {
         // Not a valid connectivity
-        perror("Not a valid connectivity");
+        std::cerr << "[Error]: " << connectivity << " is not a valid connectivity. Pick 8 or 4." << std::endl;
         exit(EXIT_FAILURE);
     }
 }
