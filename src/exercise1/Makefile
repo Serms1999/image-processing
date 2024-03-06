@@ -10,6 +10,7 @@ OPENCV_LIBS = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs
 
 TARGET = example_opencv_1
 SOURCE = example_opencv_1.cpp
+COMPILATION_FILES_FOLDER = $(TARGET).dSYM
 IMAGE = cam_74.pgm
 
 $(TARGET): $(SOURCE)
@@ -19,4 +20,4 @@ run: $(TARGET) $(IMAGE)
 	./$(TARGET) $(IMAGE)
 
 clean:
-	rm -f output1.pgm $(TARGET)
+	rm -rf output1.pgm $(TARGET) $(COMPILATION_FILES_FOLDER)
