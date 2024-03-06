@@ -8,7 +8,7 @@ Proof the idempotence of the `\texttt{closing-opening}' alternated filter.
 To prove the idempotence of the closing-opening ($\varphi_B\gamma_B$) we first need to assume some statements:
 \begin{itemize}
     \item Both $\gamma_B$ (opening) and $\varphi_B$ (closing) are increasing and idempotent.
-    \item $\gamma_B$ (opening) is antiextensive.
+    \item $\gamma_B$ (opening) is anti-extensive.
     \item $\varphi_B$ (closing) is extensive.
 \end{itemize}
 
@@ -34,7 +34,7 @@ To prove the idempotence of the closing-opening ($\varphi_B\gamma_B$) we first n
             \begin{equation}
             \begin{aligned}
                 \varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
-                \varphi_B\gamma_B\varphi_B\varphi_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
+                \varphi_B\varphi_B\varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
                 \varphi_B\gamma_B\varphi_B\gamma_B(I) &\leq \varphi_B\gamma_B(I)
             \end{aligned}
             \label{eq:leq}
@@ -48,7 +48,7 @@ To prove the idempotence of the closing-opening ($\varphi_B\gamma_B$) we first n
             \begin{equation}
             \begin{aligned}
                 \varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
-                \gamma_B\gamma_B\varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
+                \varphi_B\gamma_B\gamma_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
                 \varphi_B\gamma_B\varphi_B\gamma_B(I) &\geq \varphi_B\gamma_B(I)
             \end{aligned}
             \label{eq:geq}
