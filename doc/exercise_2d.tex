@@ -1,0 +1,35 @@
+\section*{Exercise 2b}
+
+{
+\bfseries
+Estimate the number of operations of operations to process a $n \times n$ input image using: $\delta_B(I)$ or $\delta_C\left(\delta_D \left( I \right) \right)$.
+}
+
+\begin{center}
+    \begin{tikzpicture}
+        \node[] (B_label) {$B$ \quad $m \times m$};
+        \node[draw, minimum width=2cm, minimum height=2cm] (B) [below = 0cm of B_label] {$\times$};
+
+        \node[draw, minimum width=2cm, minimum height=0.5cm] (C) [right = 2 cm of B] {$\times$};
+        \node[] (C_label) [above = 0cm of C] {$C$ \quad $1 \times m$};
+
+        \node[draw, minimum width=0.5cm, minimum height=2cm] (D) [right = 1cm of C] {$\times$};
+        \node[] (D_label) [above = 0cm of D] {$D$ \quad $1 \times m$};
+    \end{tikzpicture}
+\end{center}
+
+First of all, it is defined the function $op(f)$ that counts the number of operations required to compute $f$. It is also defined that computing the maximum of two numbers $a, b \in \mathbb{Z}$ needs only 1 operation, thus, $op\left(\max\{a, b\}\right) = 1$.
+
+Using these assumptions computing the maximum of $n$ numbers ($x_i$) will require $n - 1$ operations.
+\begin{gather*}
+    op(\underbrace{\max\{\cdots\max\{\max\{}_{\max{} \text{ is repeated } n - 1 \text{ times}}x_1, x_2\}, x_3\},\cdots,x_n\}) = n - 1
+\end{gather*}
+
+The number of operations required to compute $\delta_B(I)$ will be computed as the maximum among the structuring element $B$ that has $m^2$ elements, so it will require $m^2 - 1$ operations. This is performed in each pixel of the image, that is $n^2$ times.
+
+The number of operations required to compute $\delta_C\left(\delta_D \left( I \right) \right)$ will be computed as the maximum among the structuring element $C$ that has $m$ elements, so it will require $m - 1$ operations, plus computing the maximum among the other structuring element $D$ that will also require $m - 1$ operations because it has $m$ elements too. This is performed in each pixel of the image, that is $n^2$ times.
+
+In conclusion,
+$$
+    n^2(m^2 - 1) = op\left(\delta_B(I)\right) \geq op\left(\delta_C\left(\delta_D \left( I \right) \right)\right) = n^2(m - 1) + n^2(m - 1) = 2n^2(m - 1)
+$$

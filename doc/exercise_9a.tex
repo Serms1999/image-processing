@@ -1,0 +1,59 @@
+\section*{Exercise 9a}
+
+{
+\bfseries
+Proof the idempotence of the `\texttt{closing-opening}' alternated filter.
+}
+
+To prove the idempotence of the closing-opening ($\varphi_B\gamma_B$) we first need to assume some statements:
+\begin{itemize}
+    \item Both $\gamma_B$ (opening) and $\varphi_B$ (closing) are increasing and idempotent.
+    \item $\gamma_B$ (opening) is antiextensive.
+    \item $\varphi_B$ (closing) is extensive.
+\end{itemize}
+
+\newtheorem{thm}{Theorem}
+
+\phantom{a}
+
+\begin{thm}
+    Idempotence of the `closing-opening' alternated filter:
+    $$
+    \varphi_B\gamma_B\varphi_B\gamma_B(I) = \varphi_B\gamma_B(I)
+    $$
+
+    \begin{proof}
+        The proof is done showing that both of the inequalities are satisfied.
+        \begin{itemize}
+            \item[]
+            \noindent\fbox{%
+                \parbox{0.3\textwidth}{%
+                    $\varphi_B\gamma_B\varphi_B\gamma_B(I) \leq \varphi_B\gamma_B(I)$
+                }%
+            }
+            \begin{equation}
+            \begin{aligned}
+                \varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
+                \varphi_B\gamma_B\varphi_B\varphi_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
+                \varphi_B\gamma_B\varphi_B\gamma_B(I) &\leq \varphi_B\gamma_B(I)
+            \end{aligned}
+            \label{eq:leq}
+            \end{equation}
+            \item[]
+            \noindent\fbox{%
+                \parbox{0.3\textwidth}{%
+                    $\varphi_B\gamma_B\varphi_B\gamma_B(I) \geq \varphi_B\gamma_B(I)$
+                }%
+            }
+            \begin{equation}
+            \begin{aligned}
+                \varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
+                \gamma_B\gamma_B\varphi_B\gamma_B(I) &= \varphi_B\gamma_B(I) \Rightarrow \\
+                \varphi_B\gamma_B\varphi_B\gamma_B(I) &\geq \varphi_B\gamma_B(I)
+            \end{aligned}
+            \label{eq:geq}
+            \end{equation}
+        \end{itemize}
+        By \eqref{eq:leq} and \eqref{eq:geq} it can be concluded that the equality $\varphi_B\gamma_B\varphi_B\gamma_B(I) = \varphi_B\gamma_B(I)$ holds. \\
+    \end{proof}
+\end{thm}
