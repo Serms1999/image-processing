@@ -152,7 +152,7 @@ neighbourhood getNeighbours4Connectivity(pixel p, u_int height, u_int width)
         {
             neighbours.push_back(pixel(p.x, p.y - 1));
             neighbours.push_back(pixel(p.x, p.y + 1));
-            neighbours.push_back(pixel(p.x + 1, p.y));
+            neighbours.push_back(pixel(p.x - 1, p.y));
         }
     }
     else
