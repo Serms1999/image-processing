@@ -20,16 +20,14 @@ neighbourhood getNeighbours8Connectivity(Point p, u_int height, u_int width)
     {
         for (int j = -1; j <= 1; ++j)
         {
-            if (!(i == 0 && j == 0))
+            if (i == 0 && j == 0) continue;
+            // Exclude the center Point itself
+            int nx = p.x + i;
+            int ny = p.y + j;
+            if (nx >= 0 && nx < height && ny >= 0 && ny < width)
             {
-                // Exclude the center Point itself
-                int nx = p.x + i;
-                int ny = p.y + j;
-                if (nx >= 0 && nx < height && ny >= 0 && ny < width)
-                {
-                    // Add the valid neighbor to the list
-                    neighbors.push_back(Point(nx, ny));
-                }
+                // Add the valid neighbor to the list
+                neighbors.emplace_back(nx, ny);
             }
         }
     }
@@ -43,19 +41,19 @@ neighbourhood getNeighbours4Connectivity(Point p, u_int height, u_int width)
 
     // Add the top neighbor
     if (p.x > 0)
-        neighbors.push_back(Point(p.x - 1, p.y));
+        neighbors.emplace_back(p.x - 1, p.y);
 
     // Add the left neighbor
     if (p.y > 0)
-        neighbors.push_back(Point(p.x, p.y - 1));
+        neighbors.emplace_back(p.x, p.y - 1);
 
     // Add the right neighbor
     if (p.y < width - 1)
-        neighbors.push_back(Point(p.x, p.y + 1));
+        neighbors.emplace_back(p.x, p.y + 1);
 
     // Add the bottom neighbor
     if (p.x < height - 1)
-        neighbors.push_back(Point(p.x + 1, p.y));
+        neighbors.emplace_back(p.x + 1, p.y);
 
     return neighbors;
 }

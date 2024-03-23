@@ -75,13 +75,9 @@ int main(int argc, char *argv[])
     imwrite(outputFilename, output);
 
     cout << "Showing image in window... Press a key to finish." << endl;
-    u_int winNameLength = strlen("Window: flatzone") + strlen(argv[1]) + 1;
-    char *winName = (char*) malloc(winNameLength * sizeof(char));
-    snprintf(winName, winNameLength, "Window: flatzone");
-    imshow(winName, output);
+    imshow("Window: flatzone", output);
     waitKey(0);
-
-    free(winName);
+    destroyAllWindows();
 
     return EXIT_SUCCESS;
 }

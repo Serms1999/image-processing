@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     }
 
     // Read the erosion size
-    uint EROSION_SIZE = atoi(argv[1]);
+    u_int EROSION_SIZE = atoi(argv[1]);
 
     // Read the input image
     Mat image = imread(argv[2], IMREAD_GRAYSCALE);
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     imwrite(outputFilename, output);
 
     cout << "Showing image in window... Press a key to finish." << endl;
-    uint winNameLength = strlen("Window: image with erosion size = ") + strlen(argv[1]) + 1;
+    u_int winNameLength = strlen("Window: image with erosion size = ") + strlen(argv[1]) + 1;
     char *winName = (char*) malloc(winNameLength * sizeof(char));
     snprintf(winName, winNameLength, "Window: image with erosion size = %d", EROSION_SIZE);
     imshow(winName, output);
