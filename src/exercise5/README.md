@@ -1,7 +1,7 @@
 # Exercise 5
 
-[!IMPORTANT]
-This exercise relies on other exercises, thus those exercises should
+> [!IMPORTANT]
+> This exercise relies on other exercises, thus those exercises should
 have their binary under the `bin` directory. See [build](../../README.md#build) section.
 
 ## Exercise 5a
