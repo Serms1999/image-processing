@@ -1,8 +1,8 @@
 //
-// Created by Sergio Marin Sanchez on 25/2/24.
+// Created by Sergio Marin Sanchez on 14/3/24.
 //
 
-#include "exercise_11a_flatzone.h"
+#include "exercise_13a_minimum.h"
 
 #include "flatzone.h"
 
@@ -20,11 +20,12 @@ using std::cout;
 using std::cerr;
 using std::endl;
 using std::fstream;
+using std::ofstream;
 using std::ios;
 
 config readConfigFile(char *configFilename)
 {
-    config configuration{};
+    config configuration;
     fstream file;
 
     file.open(configFilename, ios::in);
@@ -37,13 +38,36 @@ config readConfigFile(char *configFilename)
         configuration.x = atoi(line);
         file.getline(line, BUFFER_SIZE * sizeof(char));
         configuration.connectivity = atoi(line);
-        file.getline(line, BUFFER_SIZE * sizeof(char));
-        configuration.flatZoneLabel = atoi(line);
         free(line);
         file.close();
     }
 
     return configuration;
+}
+
+int writeOutputFile(const char *fileName, bool minimum)
+{
+    char *output = (char*) malloc(2 * sizeof(char));
+    snprintf(output, 2 * sizeof(char), "%c", minimum ? IS_MIN : IS_NOT_MIN);
+
+    int fd;
+    if ((fd = open(fileName, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU | S_IRGRP | S_IWGRP)) == -1)
+    {
+        perror("Error writing the output file");
+        free(output);
+        return EXIT_FAILURE;
+    }
+    if (write(fd, output, strlen(output)) == -1)
+    {
+        perror("Error writing the output file");
+        close(fd);
+        free(output);
+        return EXIT_FAILURE;
+    }
+
+    close(fd);
+    free(output);
+    return EXIT_SUCCESS;
 }
 
 
@@ -68,20 +92,8 @@ int main(int argc, char *argv[])
     Mat output = image.clone().setTo(Scalar::all(LABEL_NO_FZ));
 
     // Find the flat zone
-    reconstructFlatZone(&image, &output, Point(configuration.x, configuration.y),
-                        configuration.connectivity, configuration.flatZoneLabel);
+    bool minimum = flatZoneMinimum(&image, &output, Point(configuration.x, configuration.y),
+                                   configuration.connectivity, LABEL_FZ);
 
-    cout << "Saving image " << outputFilename << " ..." << endl;
-    imwrite(outputFilename, output);
-
-    cout << "Showing image in window... Press a key to finish." << endl;
-    u_int winNameLength = strlen("Window: flatzone") + strlen(argv[1]) + 1;
-    char *winName = (char*) malloc(winNameLength * sizeof(char));
-    snprintf(winName, winNameLength, "Window: flatzone");
-    imshow(winName, output);
-    waitKey(0);
-
-    free(winName);
-
-    return EXIT_SUCCESS;
+    return writeOutputFile(outputFilename, minimum);
 }

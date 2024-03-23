@@ -1,8 +1,8 @@
 //
-// Created by Sergio Marin Sanchez on 25/2/24.
+// Created by Sergio Marin Sanchez on 22/3/24.
 //
 
-#include "exercise_11a_flatzone.h"
+#include "exercise_13b_maximum.h"
 
 #include "flatzone.h"
 
@@ -20,11 +20,12 @@ using std::cout;
 using std::cerr;
 using std::endl;
 using std::fstream;
+using std::ofstream;
 using std::ios;
 
 config readConfigFile(char *configFilename)
 {
-    config configuration{};
+    config configuration;
     fstream file;
 
     file.open(configFilename, ios::in);
@@ -37,8 +38,6 @@ config readConfigFile(char *configFilename)
         configuration.x = atoi(line);
         file.getline(line, BUFFER_SIZE * sizeof(char));
         configuration.connectivity = atoi(line);
-        file.getline(line, BUFFER_SIZE * sizeof(char));
-        configuration.flatZoneLabel = atoi(line);
         free(line);
         file.close();
     }
@@ -46,11 +45,35 @@ config readConfigFile(char *configFilename)
     return configuration;
 }
 
-
-int main(int argc, char *argv[])
+int writeOutputFile(const char *fileName, bool maximum)
 {
-    if (argc < 4)
+    cout << maximum << endl;
+    char *output = (char*) malloc(2 * sizeof(char));
+    snprintf(output, 2 * sizeof(char), "%c", maximum ? IS_MAX : IS_NOT_MAX);
+
+    int fd;
+    if ((fd = open(fileName, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU | S_IRGRP | S_IWGRP)) == -1)
     {
+        perror("Error writing the output file");
+        free(output);
+        return EXIT_FAILURE;
+    }
+    if (write(fd, output, strlen(output)) == -1)
+    {
+        perror("Error writing the output file");
+        close(fd);
+        free(output);
+        return EXIT_FAILURE;
+    }
+
+    close(fd);
+    free(output);
+    return EXIT_SUCCESS;
+}
+
+
+int main(int argc, char *argv[]) {
+    if (argc < 4) {
         cerr << "Error: number of arguments: " << argv[0] << " <input file> <input image> <output image>" << endl;
         return EXIT_FAILURE;
     }
@@ -68,20 +91,8 @@ int main(int argc, char *argv[])
     Mat output = image.clone().setTo(Scalar::all(LABEL_NO_FZ));
 
     // Find the flat zone
-    reconstructFlatZone(&image, &output, Point(configuration.x, configuration.y),
-                        configuration.connectivity, configuration.flatZoneLabel);
+    bool maximum = flatZoneMaximum(&image, &output, Point(configuration.x, configuration.y),
+                                   configuration.connectivity, LABEL_FZ);
 
-    cout << "Saving image " << outputFilename << " ..." << endl;
-    imwrite(outputFilename, output);
-
-    cout << "Showing image in window... Press a key to finish." << endl;
-    u_int winNameLength = strlen("Window: flatzone") + strlen(argv[1]) + 1;
-    char *winName = (char*) malloc(winNameLength * sizeof(char));
-    snprintf(winName, winNameLength, "Window: flatzone");
-    imshow(winName, output);
-    waitKey(0);
-
-    free(winName);
-
-    return EXIT_SUCCESS;
+    return writeOutputFile(outputFilename, maximum);
 }
