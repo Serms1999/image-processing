@@ -6,7 +6,7 @@ Personal repository for Image Processing, Analysis and Classification course 202
 
 To build the code execute:
 
-```{shell}
+```{sh}
 cmake . -Bbuild && cmake --build build
 ```
 
