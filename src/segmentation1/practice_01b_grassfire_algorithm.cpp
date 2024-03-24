@@ -106,9 +106,9 @@ int main(int argc, char *argv[])
     imwrite(outputFilename, output);
 
     cout << "Showing image in window... Press a key to finish." << endl;
-    u_int winNameLength = strlen("Window: regions of image: ") + strlen(argv[1]) + 1;
+    u_int winNameLength = strlen("Window: regions of image: ") + strlen(argv[2]) + 1;
     char *winName = (char*) malloc(winNameLength * sizeof(char));
-    snprintf(winName, winNameLength, "Window: regions of image: %s", argv[1]);
+    snprintf(winName, winNameLength, "Window: regions of image: %s", argv[2]);
     imshow(winName, output);
     waitKey(0);
     destroyAllWindows();
