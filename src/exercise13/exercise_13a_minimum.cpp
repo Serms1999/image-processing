@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     char *outputFilename = argv[3];
 
     // Prepare the output image
-    Mat output = image.clone().setTo(Scalar::all(LABEL_NO_FZ));
+    Mat output = Mat(image.size(), CV_8UC1, Scalar(LABEL_NO_FZ));
 
     // Find the flat zone
     bool minimum = flatZoneMinimum(&image, &output, Point(configuration.x, configuration.y),

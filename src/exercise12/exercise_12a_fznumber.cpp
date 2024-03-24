@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     char *outputFilename = argv[3];
 
     // Prepare the auxiliary image
-    Mat auxiliary = Mat(image.rows, image.cols, CV_16UC1, Scalar(LABEL_NO_FZ));
+    Mat auxiliary = Mat(image.size(), CV_16UC1, Scalar(LABEL_NO_FZ));
 
     u_short numberOfFlatZones = flatZoneCount(&image, &auxiliary, connectivity);
 

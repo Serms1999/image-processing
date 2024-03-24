@@ -47,7 +47,6 @@ config readConfigFile(char *configFilename)
 
 int writeOutputFile(const char *fileName, bool maximum)
 {
-    cout << maximum << endl;
     char *output = (char*) malloc(2 * sizeof(char));
     snprintf(output, 2 * sizeof(char), "%c", maximum ? IS_MAX : IS_NOT_MAX);
 
@@ -88,7 +87,7 @@ int main(int argc, char *argv[]) {
     char *outputFilename = argv[3];
 
     // Prepare the output image
-    Mat output = image.clone().setTo(Scalar::all(LABEL_NO_FZ));
+    Mat output = Mat(image.size(), CV_8UC1, Scalar(LABEL_NO_FZ));
 
     // Find the flat zone
     bool maximum = flatZoneMaximum(&image, &output, Point(configuration.x, configuration.y),
