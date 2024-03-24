@@ -12,13 +12,14 @@ using cv::Point;
 using std::cerr;
 using std::endl;
 
-neighbourhood getNeighbours8Connectivity(Point p, u_int height, u_int width)
+neighbourhood getNeighbours8Connectivity(Point p, u_int height, u_int width, u_int size = 1)
 {
     neighbourhood neighbors;
+    int signedSize = static_cast<int>(size);
 
-    for (int i = -1; i <= 1; ++i)
+    for (int i = -signedSize; i <= signedSize; i++)
     {
-        for (int j = -1; j <= 1; ++j)
+        for (int j = -signedSize; j <= signedSize; j++)
         {
             if (i == 0 && j == 0) continue;
             // Exclude the center Point itself
@@ -35,37 +36,48 @@ neighbourhood getNeighbours8Connectivity(Point p, u_int height, u_int width)
     return neighbors;
 }
 
-neighbourhood getNeighbours4Connectivity(Point p, u_int height, u_int width)
+neighbourhood getNeighbours4Connectivity(Point p, u_int height, u_int width, u_int size = 1)
 {
     neighbourhood neighbors;
+    int signedSize = static_cast<int>(size);
 
-    // Add the top neighbor
-    if (p.x > 0)
-        neighbors.emplace_back(p.x - 1, p.y);
+    // Add the vertical neighbors
+    for (int i = -signedSize; i <= signedSize; i++)
+    {
+        if (i == 0) continue;
+        int nx = p.x + i;
+        int ny = p.y;
+        if (nx >= 0 && nx < height && ny >= 0 && ny < width)
+        {
+            // Add the valid neighbor to the list
+            neighbors.emplace_back(nx, ny);
+        }
+    }
 
-    // Add the left neighbor
-    if (p.y > 0)
-        neighbors.emplace_back(p.x, p.y - 1);
-
-    // Add the right neighbor
-    if (p.y < width - 1)
-        neighbors.emplace_back(p.x, p.y + 1);
-
-    // Add the bottom neighbor
-    if (p.x < height - 1)
-        neighbors.emplace_back(p.x + 1, p.y);
+    // Add the horizontal neighbors
+    for (int j = -signedSize; j <= signedSize; j++)
+    {
+        if (j == 0) continue;
+        int nx = p.x;
+        int ny = p.y + j;
+        if (nx >= 0 && nx < height && ny >= 0 && ny < width)
+        {
+            // Add the valid neighbor to the list
+            neighbors.emplace_back(nx, ny);
+        }
+    }
 
     return neighbors;
 }
 
-neighbourhood getNeighbours(Point p, u_int height, u_int width, u_int connectivity)
+neighbourhood getNeighbours(Point p, u_int height, u_int width, u_int connectivity, u_int size)
 {
     switch (connectivity)
     {
         case 8:
-            return getNeighbours8Connectivity(p, height, width);
+            return getNeighbours8Connectivity(p, height, width, size);
         case 4:
-            return getNeighbours4Connectivity(p, height, width);
+            return getNeighbours4Connectivity(p, height, width, size);
         default:
             // Not a valid connectivity
             cerr << "Error: " << connectivity << " is not a valid connectivity. Pick 8 or 4." << endl;

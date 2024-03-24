@@ -12,10 +12,6 @@
 
 typedef std::list<cv::Point> neighbourhood;
 
-neighbourhood getNeighbours8Connectivity(cv::Point p, u_int height, u_int width);
-
-neighbourhood getNeighbours4Connectivity(cv::Point p, u_int height, u_int width);
-
-neighbourhood getNeighbours(cv::Point p, u_int height, u_int width, u_int connectivity);
+neighbourhood getNeighbours(cv::Point p, u_int height, u_int width, u_int connectivity, u_int size = 1);
 
 #endif //IMAGE_PROCESSING_NEIGHBORS_H

@@ -139,3 +139,20 @@ target_include_directories(exercise_13d_maxima PUBLIC
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/lib/Flatzone"
 )
+
+# Segmentation
+## Segmentation 1
+add_executable(practice_01a_boundary_extraction src/segmentation1/practice_01a_boundary_extraction.cpp)
+target_link_libraries(practice_01a_boundary_extraction PUBLIC Erosion)
+target_include_directories(practice_01a_boundary_extraction PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Erosion"
+)
+
+## Segmentation 2
+add_executable(practice_01b_grassfire_algorithm src/segmentation1/practice_01b_grassfire_algorithm.cpp)
+target_link_libraries(practice_01b_grassfire_algorithm PUBLIC Neighbors)
+target_include_directories(practice_01b_grassfire_algorithm PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Neighbors"
+)
