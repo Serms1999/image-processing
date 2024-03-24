@@ -23,4 +23,8 @@ bool flatZoneMinimum(const cv::Mat *image, const cv::Mat *output, const cv::Poin
 bool flatZoneMaximum(const cv::Mat *image, const cv::Mat *output, const cv::Point pixel,
                         const u_int connectivity, const u_int labelFz);
 
+void regionalMinima(const cv::Mat *image, const cv::Mat *output, const u_int connectivity, const u_int labelFz);
+
+void regionalMaxima(const cv::Mat *image, const cv::Mat *output, const u_int connectivity, const u_int labelFz);
+
 #endif //IMAGE_PROCESSING_FLATZONE_H

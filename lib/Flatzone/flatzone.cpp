@@ -7,14 +7,16 @@
 
 using cv::Mat;
 using cv::Point;
+using cv::Scalar;
+using cv::addWeighted;
 
 using std::queue;
 
-void reconstructFlatZone(const Mat *image, const Mat *output, const Point pixel,
-                         const u_int connectivity, const u_int labelFz){
+void reconstructFlatZone(const Mat *image, const Mat *output, const Point pixel, const u_int connectivity, const u_int labelFz)
+{
     Mat img = *(image);
     Mat out = *(output);
-    out.at<u_char>(pixel) = labelFz;
+    out.at<u_char>(pixel.x, pixel.y) = labelFz;
 
     queue<Point> flatZone;
 
@@ -54,7 +56,7 @@ u_short flatZoneCount(const Mat *image, const Mat *output, const u_int connectiv
 
             currentLabel = ++numberOfFlatZones;
             out.at<u_short>(i, j) = currentLabel;
-            flatZone.push(Point(i, j));
+            flatZone.emplace(i, j);
 
             while (!flatZone.empty())
             {
@@ -76,12 +78,11 @@ u_short flatZoneCount(const Mat *image, const Mat *output, const u_int connectiv
     return numberOfFlatZones;
 }
 
-bool flatZoneMinimum(const Mat *image, const Mat *output, const cv::Point pixel,
-                     const u_int connectivity, const u_int labelFz)
+bool flatZoneMinimum(const Mat *image, const Mat *output, const Point pixel, const u_int connectivity, const u_int labelFz)
 {
     Mat img = *(image);
     Mat out = *(output);
-    out.at<u_char>(pixel) = labelFz;
+    out.at<u_char>(pixel.x, pixel.y) = labelFz;
 
     queue<Point> flatZone;
 
@@ -109,12 +110,11 @@ bool flatZoneMinimum(const Mat *image, const Mat *output, const cv::Point pixel,
     return true;
 }
 
-bool flatZoneMaximum(const Mat *image, const Mat *output, const cv::Point pixel,
-                     const u_int connectivity, const u_int labelFz)
+bool flatZoneMaximum(const Mat *image, const Mat *output, const Point pixel, const u_int connectivity, const u_int labelFz)
 {
     Mat img = *(image);
     Mat out = *(output);
-    out.at<u_char>(pixel) = labelFz;
+    out.at<u_char>(pixel.x, pixel.y) = labelFz;
 
     queue<Point> flatZone;
 
@@ -140,4 +140,46 @@ bool flatZoneMaximum(const Mat *image, const Mat *output, const cv::Point pixel,
     }
 
     return true;
+}
+
+void regionalMinima(const Mat *image, const Mat *output, const u_int connectivity, const u_int labelFz)
+{
+    Mat aux = Mat(image->size(), CV_8UC1, Scalar(LABEL_NO_FZ));
+
+    for (int i = 0; i < image->rows; i++)
+    {
+        for (int j = 0; j < image->cols; j++)
+        {
+            if (output->at<u_char>(i, j) != LABEL_NO_FZ) continue;
+
+            if (!flatZoneMinimum(image, &aux, Point(i, j), connectivity, labelFz))
+            {
+                aux.setTo(Scalar(LABEL_NO_FZ));
+                continue;
+            }
+
+            addWeighted(*output, 1.0, aux, 1.0, 0.0, *output);
+        }
+    }
+}
+
+void regionalMaxima(const Mat *image, const Mat *output, const u_int connectivity, const u_int labelFz)
+{
+    Mat aux = Mat(image->size(), CV_8UC1, Scalar(LABEL_NO_FZ));
+
+    for (int i = 0; i < image->rows; i++)
+    {
+        for (int j = 0; j < image->cols; j++)
+        {
+            if (output->at<u_char>(i, j) != LABEL_NO_FZ) continue;
+
+            if (!flatZoneMaximum(image, &aux, Point(i, j), connectivity, labelFz))
+            {
+                aux.setTo(Scalar(LABEL_NO_FZ));
+                continue;
+            }
+
+            addWeighted(*output, 1.0, aux, 1.0, 0.0, *output);
+        }
+    }
 }

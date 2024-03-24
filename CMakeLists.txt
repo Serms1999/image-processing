@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Set compiler flags
-set(CMAKE_CXX_FLAGS "-Wall -Werror -Wno-unused")
+set(CMAKE_CXX_FLAGS "-O2 -Wall -Werror -Wno-unused")
 
 # Set the output folder where your program will be created
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
@@ -120,6 +120,22 @@ target_include_directories(exercise_13a_minimum PUBLIC
 add_executable(exercise_13b_maximum src/exercise13/exercise_13b_maximum.cpp)
 target_link_libraries(exercise_13b_maximum PUBLIC Flatzone)
 target_include_directories(exercise_13b_maximum PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Flatzone"
+)
+
+## Exercise 13c
+add_executable(exercise_13c_minima src/exercise13/exercise_13c_minima.cpp)
+target_link_libraries(exercise_13c_minima PUBLIC Flatzone)
+target_include_directories(exercise_13c_minima PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Flatzone"
+)
+
+## Exercise 13d
+add_executable(exercise_13d_maxima src/exercise13/exercise_13d_maxima.cpp)
+target_link_libraries(exercise_13d_maxima PUBLIC Flatzone)
+target_include_directories(exercise_13d_maxima PUBLIC
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/lib/Flatzone"
 )
