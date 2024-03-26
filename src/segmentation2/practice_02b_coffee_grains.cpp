@@ -15,6 +15,8 @@ using cv::THRESH_BINARY_INV;
 using cv::RETR_EXTERNAL;
 using cv::CHAIN_APPROX_SIMPLE;
 using cv::Scalar;
+using cv::Vec3b;
+using cv::watershed;
 using cv::threshold;
 using cv::findContours;
 using cv::drawContours;
@@ -46,27 +48,43 @@ int main(int argc, char *argv[])
     Mat output;
     cvtColor(image, output, COLOR_BGR2GRAY);
 
-    // Maintain only the grains without detail
-    threshold(output, output, 110, 255, THRESH_BINARY_INV);
+    // Maintain only the grains shape without detail
+    threshold(output, output, 122 , 180, THRESH_BINARY_INV);
 
-    Mat newReference = output.clone();
-    erosion(&newReference, &output, 1);
-
-    subtract(newReference, output, output);
-
+    // Find contours
     vector<vector<Point>> contours;
-    Scalar color = Scalar(0, 0, 255);
+    Scalar markerColor = Scalar(0, 0, 255);
     findContours(output, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
+    // Build the mask
+    Mat markers = Mat(image.size(), CV_32SC1, Scalar(0));
     for (int i = 0; i < contours.size(); i++)
     {
-        drawContours(image, contours, i, color, 1);
+        drawContours(markers, contours, i, Scalar(i + 1), 1);
+    }
+
+    // Perform watershed algorithm
+    watershed(image, markers);
+    output = Mat(image.size(), CV_8UC3, Scalar(0, 0, 0));
+
+    // Assign original color or the contour color
+    Vec3b contourColor = Vec3b(0, 0, 255);
+    Vec3b pixelColor;
+    for (int i = 0; i < markers.rows; i++)
+    {
+        for (int j = 0; j < markers.cols; j++)
+        {
+            pixelColor = markers.at<int>(i, j) == -1
+                    ? contourColor
+                    : image.at<Vec3b>(i, j);
+            output.at<Vec3b>(i, j) = pixelColor;
+        }
     }
 
     cout << "Saving image " << outputFilename << " ..." << endl;
-    imwrite(outputFilename, image);
+    imwrite(outputFilename, output);
 
-    imshow("Markers", image);
+    imshow("Markers", output);
     waitKey(0);
     destroyAllWindows();
 
