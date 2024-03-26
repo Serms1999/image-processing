@@ -13,5 +13,9 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cstdio>
+#include <vector>
+
+#include "erosion.h"
+#include "opening.h"
 
 #endif //IMAGE_PROCESSING_PRACTICE_02B_COFFEE_GRAINS_H

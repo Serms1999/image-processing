@@ -166,3 +166,12 @@ target_include_directories(practice_02a_wheel_teeth_count PUBLIC
         "${PROJECT_SOURCE_DIR}/lib/Opening"
         "${PROJECT_SOURCE_DIR}/lib/Flatzone"
 )
+
+## Segmentation 2b
+add_executable(practice_02b_coffee_grains src/segmentation2/practice_02b_coffee_grains.cpp)
+target_link_libraries(practice_02b_coffee_grains PUBLIC Erosion Opening)
+target_include_directories(practice_02b_coffee_grains PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Erosion"
+        "${PROJECT_SOURCE_DIR}/lib/Opening"
+)
