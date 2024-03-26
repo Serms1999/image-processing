@@ -63,6 +63,9 @@ int main(int argc, char *argv[])
     // Remove central regions
     regionCount -= 2;
 
+    // Remove background region
+    regionCount -= 1;
+
     cout << "Number of teeth: " << regionCount << endl;
 
     return EXIT_SUCCESS;
