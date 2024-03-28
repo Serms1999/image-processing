@@ -56,9 +56,9 @@ void imMinimaImpose(Mat *imageIn, Mat *imageInMarkers, Mat *imageOut)
 
 int main(int argc, char *argv[])
 {
-    if (argc < 5)
+    if (argc < 4)
     {
-        cerr << "Error: number of arguments: " << argv[0] << " <input file> <input markers image> <connectivity> <output image>" << endl;
+        cerr << "Error: number of arguments: " << argv[0] << " <input file> <input markers image> <output image>" << endl;
         return EXIT_FAILURE;
     }
 
@@ -68,15 +68,8 @@ int main(int argc, char *argv[])
     // Read markers image
     Mat imageMarkers = imread(argv[2], IMREAD_GRAYSCALE);
 
-    // Read connectivity
-    u_int connectivity = atoi(argv[3]);
-    if (connectivity != 8 && connectivity != 4)
-    {
-        cerr << "Error: bad connectivity value \"" << argv[3] << "\". Use 8 or 4" << endl;
-    }
-
     // Read output image
-    char *outputFilename = argv[4];
+    char *outputFilename = argv[3];
 
     Mat output = Mat::zeros(image.size(), CV_8SC1);
 
@@ -85,7 +78,7 @@ int main(int argc, char *argv[])
     cout << "Saving image " << outputFilename << " ..." << endl;
     imwrite(outputFilename, output);
 
-    imshow("", output);
+    imshow("Window: Minima imposition", output);
     waitKey(0);
     destroyAllWindows();
 
