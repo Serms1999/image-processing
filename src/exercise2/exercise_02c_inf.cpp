@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <cstdio>
 
+#include "infimum.h"
+
 using cv::Mat;
 using cv::imread;
 using cv::IMREAD_GRAYSCALE;
@@ -21,13 +23,12 @@ using cv::destroyAllWindows;
 using std::cout;
 using std::cerr;
 using std::endl;
-using std::min;
 
 int main(int argc, char *argv[])
 {
     if (argc < 3)
     {
-        cerr << "Error: number of arguments: " << argv[0] << " <input image 1> <input image 2>" << endl;
+        cerr << "Error: number of arguments: " << argv[0] << " <input image 1> <input image 2> <output image>" << endl;
         return EXIT_FAILURE;
     }
 
@@ -35,37 +36,25 @@ int main(int argc, char *argv[])
     Mat image1 = imread(argv[1], IMREAD_GRAYSCALE);
     Mat image2 = imread(argv[2], IMREAD_GRAYSCALE);
 
-    // The images should have the same shape
-    if ((image1.rows != image2.rows) || (image1.cols != image2.cols))
-    {
-        cerr << "Images should have the same shape." << endl;
-        return EXIT_FAILURE;
-    }
+    // Read output filename
+    char *outputFilename = argv[3];
 
-    // Modify the image
-    for (int i = 0; i < image1.rows; i++)
-    {
-        for (int j = 0; j < image1.cols; j++)
-        {
-            image1.at<u_char>(i, j) = min(image1.at<u_char>(i, j), image2.at<u_char>(i, j));
-        }
-    }
+    // Prepare output image
+    Mat output = Mat::zeros(image1.size(), CV_8UC1);
 
-    u_int outputFilenameLength = strlen("exercise_02c_inf_output_01.pgm") + 1;
-    char *outputFilename = (char*) malloc(outputFilenameLength);
-    snprintf(outputFilename, outputFilenameLength, "exercise_02c_inf_output_01.pgm");
+    infimum(&image1, &image2, &output);
+
     cout << "Saving image " << outputFilename << " ..." << endl;
-    imwrite(outputFilename, image1);
+    imwrite(outputFilename, output);
 
     cout << "Showing image in window... Press a key to finish." << endl;
     u_int winNameLength = strlen("Window: infimum of the images") + 1;
     char *winName = (char*) malloc(winNameLength * sizeof(char));
     snprintf(winName, winNameLength, "Window: infimum of the images");
-    imshow(winName, image1);
+    imshow(winName, output);
     waitKey(0);
     destroyAllWindows();
 
-    free(outputFilename);
     free(winName);
 
     return EXIT_SUCCESS;

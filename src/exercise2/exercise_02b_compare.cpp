@@ -13,6 +13,8 @@
 #include <cstdio>
 #include <fcntl.h>
 
+#include "compare.h"
+
 using cv::Mat;
 using cv::imread;
 using cv::IMREAD_GRAYSCALE;
@@ -25,9 +27,8 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-int writeOutputFile(bool equal)
+int writeOutputFile(char *fileName, bool equal)
 {
-    char *fileName = strdup("exercise_02b_output_01.txt");
     char *output = (char*) malloc(2 * sizeof(char));
     snprintf(output, 2 * sizeof(char), "%c", equal ? EQUAL_FILES : DIFFERENT_FILES);
 
@@ -53,9 +54,9 @@ int writeOutputFile(bool equal)
 
 int main(int argc, char *argv[])
 {
-    if (argc < 3)
+    if (argc < 4)
     {
-        cerr << "Error: number of arguments: " << argv[0] << " <input image 1> <input image 2>" << endl;
+        cerr << "Error: number of arguments: " << argv[0] << " <input image 1> <input image 2> <output file>" << endl;
         return EXIT_FAILURE;
     }
 
@@ -63,24 +64,5 @@ int main(int argc, char *argv[])
     Mat image1 = imread(argv[1], IMREAD_GRAYSCALE);
     Mat image2 = imread(argv[2], IMREAD_GRAYSCALE);
 
-    // If the images shapes do not match, the images can not be equals
-    if ((image1.rows != image2.rows) || (image1.cols != image2.cols))
-    {
-        return writeOutputFile(false);
-    }
-
-    // If they have equal shapes then each pixel has to be checked
-    for (int i = 0; i < image1.rows; i++)
-    {
-        for (int j = 0; j < image1.cols; j++)
-        {
-            if (image1.at<u_char>(i, j) != image2.at<u_char>(i, j))
-            {
-                return writeOutputFile(false);
-            }
-        }
-    }
-
-    // If every pair of pixels are equal then the images are equals
-    return writeOutputFile(true);
+    return writeOutputFile(argv[3], compare(&image1, &image2));
 }

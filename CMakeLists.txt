@@ -19,6 +19,9 @@ link_libraries(${OpenCV_LIBS})
 # Libraries
 add_subdirectory(lib/Erosion)
 add_subdirectory(lib/Dilation)
+add_subdirectory(lib/Compare)
+add_subdirectory(lib/Infimum)
+add_subdirectory(lib/Supremum)
 add_subdirectory(lib/Opening)
 add_subdirectory(lib/Closing)
 add_subdirectory(lib/Neighbors)
@@ -33,10 +36,26 @@ add_executable(exercise_02a_thresh src/exercise2/exercise_02a_thresh.cpp)
 
 ## Exercise 2b
 add_executable(exercise_02b_compare src/exercise2/exercise_02b_compare.cpp)
+target_link_libraries(exercise_02b_compare PUBLIC Compare)
+target_include_directories(exercise_02b_compare PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Compare"
+)
 
 ## Exercise 2c
 add_executable(exercise_02c_inf src/exercise2/exercise_02c_inf.cpp)
+target_link_libraries(exercise_02c_inf PUBLIC Infimum)
+target_include_directories(exercise_02c_inf PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Infimum"
+)
+
 add_executable(exercise_02c_sup src/exercise2/exercise_02c_sup.cpp)
+target_link_libraries(exercise_02c_sup PUBLIC Supremum)
+target_include_directories(exercise_02c_sup PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Supremum"
+)
 
 # Exercise 3
 ## Exercise 3a
@@ -138,6 +157,17 @@ target_link_libraries(exercise_13d_maxima PUBLIC Flatzone)
 target_include_directories(exercise_13d_maxima PUBLIC
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/lib/Flatzone"
+)
+
+# Minima imposition
+add_executable(exercise_minima_imposition src/minima_imposition/exercise_minima_imposition.cpp)
+target_link_libraries(exercise_minima_imposition PUBLIC Compare Infimum Supremum Erosion)
+target_include_directories(exercise_minima_imposition PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Compare"
+        "${PROJECT_SOURCE_DIR}/lib/Infimum"
+        "${PROJECT_SOURCE_DIR}/lib/Supremum"
+        "${PROJECT_SOURCE_DIR}/lib/Erosion"
 )
 
 # Segmentation 1
