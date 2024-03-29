@@ -1,0 +1,25 @@
+
+
+----------------------------------------------------------------
+
+Exercise 21a. Experiment using the MNIST database and
+a simple neural network with one hidden layer, with and
+without adding noise.
+
+
+See file Readme.pdf
+
+
+Links:
+
+https://www.kaggle.com/code/wwsalmon/simple-mnist-nn-from-scratch-numpy-no-tf-keras/notebook
+
+https://www.youtube.com/watch?v=w8yWXqWQYmU
+
+https://en.wikipedia.org/wiki/MNIST_database
+
+
+----------------------------------------------------------------
+
+
+

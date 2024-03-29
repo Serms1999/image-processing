@@ -14,3 +14,9 @@ cmake-build-debug/
 # Ignore input and output folders
 input/
 output/
+
+# Ignore jupyter notebook files
+.ipynb_checkpoints/
+
+# Ignore pycache
+__pycache__/
