@@ -204,3 +204,20 @@ target_include_directories(practice_02b_coffee_grains PUBLIC
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/lib/Erosion"
 )
+
+# Segmentation 3
+## Segmentation 3a
+add_executable(practice_03a_coffee_grains src/segmentation3/practice_03a_coffee_grains.cpp)
+target_link_libraries(practice_03a_coffee_grains PUBLIC Erosion)
+target_include_directories(practice_03a_coffee_grains PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Erosion"
+)
+
+## Segmentation 3a
+add_executable(practice_03b_fast_watershed src/segmentation3/practice_03b_fast_watershed.cpp)
+target_link_libraries(practice_03b_fast_watershed PUBLIC Neighbors)
+target_include_directories(practice_03b_fast_watershed PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}/lib/Neighbors"
+)
