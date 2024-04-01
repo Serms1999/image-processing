@@ -1,0 +1,43 @@
+\section{Introduction}
+
+\begin{frame}{\secname}{3D world $\rightarrow$ 2D content}
+    An image is just a flat representation of the 3D world.
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.5\textheight]{img/Magritte-human-condition.jpg}
+    \end{figure}
+    Even though we lose the depth component the image maintain the perspective.
+\end{frame}
+
+\begin{frame}{\secname}{3D world $\rightarrow$ 2D content}
+    Image are useful to store memories, but also we can extract information from them. For instance, we may want to know how tall is this bottle.
+    \begin{figure}
+        \centering
+        \includegraphics[height=0.5\textheight]{img/agua.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{\secname}{3D world $\rightarrow$ 2D content}
+    We need to represent the images in such a way that both humans and computers are able to deal with them. Thus matrix representation of images is defined. We can define an image $I \in M_{n,m}\left(\mathbb{R}^n\right)$ as:
+    \begin{gather*}
+        I = \begin{pmatrix}
+            p_{11} & p_{12} & \dots & p_{1m} \\
+            p_{21} & p_{22} & \dots & p_{2m} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            p_{n1} & p_{n2} & \dots & p_{nm} \\
+        \end{pmatrix}_{n \times m}
+    \end{gather*}
+    
+    Where each $p_{ij}$ is a vector in $\mathbb{R}^n$, $n$ varies depending on the number of color channels.
+\end{frame}
+
+\begin{frame}{\secname}{3D world $\rightarrow$ 2D content}  
+    Here we can see how the image is codified as we have defined before:
+    \begin{figure}
+        \centering
+        \subfloat{\includegraphics[width=0.4\textwidth]{img/tennis.jpg}}
+        \qquad
+        \subfloat{\includegraphics[width=0.4\textwidth]{img/pixels2.png}}
+    \end{figure}
+\end{frame}
+

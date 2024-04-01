@@ -1,0 +1,86 @@
+\documentclass[xcolor=table]{beamer}
+\usepackage{newclude}
+\usepackage{amsfonts,amsmath,oldgerm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,latexsym,cancel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{listingsutf8}
+\usepackage{hyperref}
+\usepackage{subfig}
+\usepackage{verbatim}
+\usepackage{datetime}
+\usepackage{pifont}
+\usepackage[export]{adjustbox}
+\usepackage{hyperref}
+
+\usepackage[
+  backend=biber,
+  style=ieee,
+  url=false,
+  doi=true,
+  isbn=false
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+\includeonly{
+    Introduction,
+    Perspective,
+    Homographies,
+    Panoramic,
+    Dental
+}
+
+\usetheme{sintef}
+
+\newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
+
+\usefonttheme[onlymath]{serif}
+
+\titlebackground*{assets/logo_titlepage}
+
+\newcommand{\hrefcol}[2]{\textcolor{cyan}{\href{#1}{#2}}}
+
+\title{Projective geometry and Panoramic image}
+\subtitle{Image Processing, Analysis and Classification}
+
+\author{Sergio Marín Sánchez}
+
+\newdate{date}{2}{4}{2024}
+\date{\displaydate{date}}
+
+\setbeamertemplate{footline}{}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\maketitle
+
+\include{Introduction}
+
+\include{Perspective}
+
+\include{Homographies}
+
+\include{Panoramic}
+
+\include{Dental}
+
+\section{References}
+
+\begin{frame}[allowframebreaks]{References}
+    \nocite{*}
+    \printbibliography
+\end{frame}
+
+\end{document}
