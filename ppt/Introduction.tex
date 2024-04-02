@@ -18,14 +18,14 @@
 \end{frame}
 
 \begin{frame}{\secname}{3D world $\rightarrow$ 2D content}
-    We need to represent the images in such a way that both humans and computers are able to deal with them. Thus matrix representation of images is defined. We can define an image $I \in M_{n,m}\left(\mathbb{R}^n\right)$ as:
+    We need to represent the images in such a way that both humans and computers are able to deal with them. Thus matrix representation of images is defined. We can define an image $I \in M_{h,w}\left(\mathbb{R}^n\right)$ as:
     \begin{gather*}
         I = \begin{pmatrix}
-            p_{11} & p_{12} & \dots & p_{1m} \\
-            p_{21} & p_{22} & \dots & p_{2m} \\
+            p_{1,1} & p_{1,2} & \dots & p_{1,w} \\
+            p_{2,1} & p_{2,2} & \dots & p_{2,w} \\
             \vdots & \vdots & \ddots & \vdots \\
-            p_{n1} & p_{n2} & \dots & p_{nm} \\
-        \end{pmatrix}_{n \times m}
+            p_{h,1} & p_{h,2} & \dots & p_{h,w} \\
+        \end{pmatrix}_{h \times w}
     \end{gather*}
     
     Where each $p_{ij}$ is a vector in $\mathbb{R}^n$, $n$ varies depending on the number of color channels.
