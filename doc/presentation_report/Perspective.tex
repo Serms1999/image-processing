@@ -1,0 +1,15 @@
+\section{Perspective}
+
+Perspective in digital images is a critical aspect that influences the perception of depth and spatial relationships within a scene. It is primarily manipulated through various parameters, with focal distance being one of the key elements.
+
+The focal distance, often denoted as $f$, is a fundamental parameter in digital imaging that determines the magnification and perspective of the captured scene. It refers to the distance between the lens and the image sensor when the subject is in focus. A shorter focal distance results in a wider field of view, allowing more of the scene to be captured within the frame, while a longer focal distance narrows the field of view, resulting in magnification and compression of distant objects.
+
+By using this focal distance, we can establish different measurements (angles) inside of the image. A potential use case for these measurements is triangulate locations. Firstly, some reference points are selected. Then, calculate the angle between them, two by two. Finally, these angles are placed over a map, and the intersection between them would indicate the actual position where the photo was taken. This method only requires some basic trigonometrics, as it can be seen in Fig. \ref{fig:triangulation}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/Inter-Circs.png}
+    \caption{Example of location triangulation}
+    \label{fig:triangulation}
+\end{figure}
+

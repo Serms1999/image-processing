@@ -1,0 +1,26 @@
+\section{Introduction}
+
+We live in a 3 dimensional world, but images are usually represented in 2 dimensional surfaces, such as screens, pictures, etc. It is necessary to remove one of this dimensions, and logically it has to be the depth component.
+
+Digital images are visual representations stored in electronic form, composed of discrete picture elements or pixels. To enable interpretation by both humans and computers, images are often represented as matrices. This matrix representation allows for manipulation and processing using computational algorithms. In the context of digital image representation, an image $I \in M_{h,w}\left(\mathbb{Z}^n\right)$ can be defined as:
+
+\begin{gather*}
+    I = \begin{pmatrix}
+        p_{1,1} & p_{1,2} & \dots & p_{1,w} \\
+        p_{2,1} & p_{2,2} & \dots & p_{2,w} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        p_{h,1} & p_{h,2} & \dots & p_{h,w} \\
+    \end{pmatrix}_{h \times w}
+\end{gather*}
+
+Here, each $p_{ij}$ represents a pixel, typically containing a vector in $\mathbb{Z}^n$, where $n$ varies based on the number of color channels. This mathematical representation serves as the foundation for various image processing and analysis techniques, facilitating both human perception and machine understanding. In Fig. \ref{fig:digital_image} it can be seen how the image is encoded using RGB color space. 
+
+\begin{figure}[H]
+    \centering
+    \subfloat[Original image]{\includegraphics[width=0.4\textwidth]{img/tennis.jpg}}
+    \qquad
+    \subfloat[Pixel matrix]{\includegraphics[width=0.4\textwidth]{img/pixels2.png}}
+    \caption{Digital image representation}
+    \label{fig:digital_image}
+\end{figure}
+
